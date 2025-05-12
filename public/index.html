@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>V-Italy - Kiến tạo không gian, gia tăng thu nhập</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body class=" text-[#d09c3f] flex flex-col min-h-screen">
+  <nav class="navbar">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#home" class="logo">
+        <img class=" md:h-[80px] w-auto object-contain" src="./img/Logo nen den.png" alt="V-Italy Logo">
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex nav-menu">
+        <a href="#home" class="nav-btn">Trang chủ</a>
+        <a href="#why" class="nav-btn">Lý do hợp tác</a>
+        <a href="#who" class="nav-btn">Dành cho ai</a>
+        <a href="#how" class="nav-btn">Hình thức hợp tác</a>
+        <a href="#registration" class="nav-btn">Đăng ký</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menuButton" type="button" class="text-[#d09c3f] hover:text-[#f0c674] focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu  md:hidden">
+      <a href="#home" class="hover:text-[#f0c674] transition-colors duration-300">Trang chủ</a>
+      <a href="#why" class="hover:text-[#f0c674] transition-colors duration-300">Lý do hợp tác</a>
+      <a href="#who" class="hover:text-[#f0c674] transition-colors duration-300">Dành cho ai</a>
+      <a href="#how" class="hover:text-[#f0c674] transition-colors duration-300">Hình thức hợp tác</a>
+      <a href="#registration" class="hover:text-[#f0c674] transition-colors duration-300">Đăng ký</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home"
+    class="min-h-screen flex flex-col justify-center relative overflow-hidden py-16 px-6 md:py-24 md:px-12 shadow-xl">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <img src="/img/Logo nen den.png" class="w-full h-full object-fit" alt="">
+    </div>
+
+    <div class="container mx-auto relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Content Left -->
+        <div class="text-center lg:text-left" data-aos="fade-right">
+
+          <h1 class="text-xl md:text-3xl lg:text-5xl font-extrabold !leading-[2] mb-6 text-[#d09c3f]">
+            CÙNG V-ITALY KIẾN TẠO KHÔNG GIAN – GIA TĂNG THU NHẬP VƯỢT TRỘI
+          </h1>
+          <p class="text-md md:text-xl mb-8 text-white/90">
+            Cơ hội hợp tác kinh doanh nội thất nhập khẩu cao cấp – Không cần vốn, không giới hạn thu nhập
+          </p>
+          <div class="space-x-4">
+            <a href="#registration"
+              class="inline-flex items-center px-8 py-4 bg-[#d09c3f] text-[#002f4b] font-semibold rounded-lg hover:bg-[#f0c674] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              <span>Đăng ký ngay</span>
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+            <a href="#why"
+              class="inline-flex  items-center px-8 py-4 border-2 border-[#d09c3f] text-[#d09c3f] font-semibold rounded-lg hover:bg-[#d09c3f] hover:text-[#002f4b] transition-all duration-300">
+              Tìm hiểu thêm
+            </a>
+          </div>
+        </div>
+
+        <!-- Image Slider Right -->
+        <div class="relative" data-aos="fade-left">
+          <div class="grid grid-cols-2 gap-4">
+            <img src="./img/view-luxurious-hotel-interior-space.jpg" alt="Luxury Interior 1"
+              class="w-full h-64 object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+            <img src="/img/z4940629213219_a6afbe925d0147b10a8ca6d8bdf8f4af.jpg" alt="Luxury Interior 2"
+              class="w-full h-64 object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300 mt-8">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea" alt="Luxury Interior 3"
+              class="w-full h-64 object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea" alt="Luxury Interior 4"
+              class="w-full h-64 object-cover rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300 mt-8">
+          </div>
+          <!-- Decorative Elements -->
+          <div class="absolute -top-4 -right-4 w-24 h-24 bg-[#d09c3f]/10 rounded-full blur-xl"></div>
+          <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-[#d09c3f]/10 rounded-full blur-xl"></div>
+        </div>
+      </div>
+
+
+  </section>
+
+  <!-- Reasons to Collaborate -->
+  <section id="why" class="py-16 px-6 md:py-20 md:px-12 shadow-lg" data-aos="fade-up" data-aos-duration="1000">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-12 text-[#d09c3f]">Vì sao nên hợp tác cùng V-Italy?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Reason 1: High Commission -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="100">
+          <div class="mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-[#d09c3f]" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Chiết khấu cao, lợi nhuận bền vững</h3>
+          <p class="text-center">Chính sách hoa hồng hấp dẫn, cạnh tranh trên thị trường</p>
+        </div>
+
+        <!-- Reason 2: Fast Payment -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="200">
+          <div class="mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-[#d09c3f]" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Thanh toán nhanh – minh bạch</h3>
+          <p class="text-center">Ghi nhận rõ từng thương vụ, chi trả đúng hẹn</p>
+        </div>
+
+        <!-- Reason 3: No Capital Required -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="300">
+          <div class="mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-[#d09c3f]" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Không cần vốn – không ôm hàng</h3>
+          <p class="text-center">Bạn chỉ cần kết nối, chúng tôi xử lý phần còn lại</p>
+        </div>
+
+        <!-- Reason 4: Premium Products -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="400">
+          <div class="mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-[#d09c3f]" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Sản phẩm nhập khẩu chính hãng – đẳng cấp châu Âu</h3>
+          <p class="text-center">Nội thất phù hợp biệt thự, penthouse, căn hộ cao cấp</p>
+        </div>
+
+        <!-- Reason 5: Turnkey Solution -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="500">
+          <div class="mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-[#d09c3f]" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Giải pháp trọn gói – thiết kế đến thi công</h3>
+          <p class="text-center">Tối ưu trải nghiệm cho khách, tăng cơ hội chốt đơn</p>
+        </div>
+
+        <!-- Reason 6: Flexible Collaboration -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="600">
+          <div class="mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-[#d09c3f]" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Hình thức hợp tác linh hoạt – không ràng buộc</h3>
+          <p class="text-center">Chỉ cần giới thiệu khách có nhu cầu – đội ngũ V-Italy sẽ đồng hành và triển khai</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Target Audience -->
+  <section id="who" class="py-16 px-6 md:py-20 md:px-12 shadow-lg" data-aos="fade-up" data-aos-duration="1000">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6 text-[#d09c3f]">Dành cho ai?</h2>
+      <p class="mb-6 text-lg max-w-2xl mx-auto">
+        Các đối tượng mà bạn muốn hướng tới:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1: Architects -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="100">
+          <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+            <img src="./img/architect.jpg" alt="Kiến trúc sư"
+              class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              onerror="this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=500&h=400&fit=crop'" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Kiến trúc sư, kỹ sư, nhà thiết kế</h3>
+          <p class="text-center">Đang có sẵn mạng lưới khách hàng tiềm năng</p>
+        </div>
+
+        <!-- Card 2: Real Estate Consultants -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="200">
+          <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+            <img src="./img/real-estate.jpg" alt="Chuyên viên BĐS"
+              class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&h=400&fit=crop'" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Chuyên viên tư vấn BĐS</h3>
+          <p class="text-center">Môi giới nhà đất, căn hộ cao cấp</p>
+        </div>
+
+        <!-- Card 3: Young Professionals -->
+        <div class="bg-[#002f4b] rounded-lg shadow-md p-6 flex flex-col items-center text-[#d09c3f] card-hover"
+          data-aos="fade-up" data-aos-delay="300">
+          <div class="mb-4 h-48 w-full overflow-hidden rounded-lg">
+            <img src="./img/young-professional.jpg" alt="Người trẻ năng động"
+              class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              onerror="this.src='https://images.unsplash.com/photo-1521791136064-7986c2920216?w=500&h=400&fit=crop'" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Người trẻ năng động</h3>
+          <p class="text-center">Mong muốn thêm nguồn thu nhập mà không ảnh hưởng công việc chính</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collaboration Method -->
+  <section id="how" class="py-16 px-6 md:py-20 md:px-12 shadow-lg" data-aos="fade-up" data-aos-duration="1000">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6 text-[#d09c3f]">Hợp tác đơn giản, linh hoạt</h2>
+      <p class="text-lg max-w-xl mx-auto">
+        Chỉ cần giới thiệu khách hàng, V-Italy sẽ xử lý toàn bộ từ tư vấn đến thi công – bạn không cần vốn hoặc gánh
+        nặng quản lý!
+      </p>
+    </div>
+  </section>
+
+  <!-- Registration Form -->
+  <section id="registration" class="py-16 px-6 md:py-20 md:px-12 shadow-xl rounded-lg max-w-3xl mx-auto"
+    data-aos="fade-up" data-aos-duration="1000">
+    <h2 class="text-3xl font-bold mb-8 text-center text-[#d09c3f]">
+      👋 Hãy để chúng tôi kết nối với bạn!
+    </h2>
+
+    <form id="contactForm" class="space-y-6">
+      <!-- Name Field -->
+      <div class="card-hover bg-opacity-10 bg-[#d09c3f] p-6 rounded-lg">
+        <label for="name" class="block mb-1 font-semibold text-[#d09c3f]">
+          😊 Họ và tên <span class="text-red-500">*</span>
+        </label>
+        <input type="text" name="name" id="name"
+          class="w-full border border-[#d09c3f] bg-[#002f4b] rounded-md p-3 focus:ring-2 focus:ring-[#d09c3f] transition-all duration-300 text-[#d09c3f] placeholder-[#d09c3f]/50"
+          placeholder="Nhập họ và tên của bạn" required />
+      </div>
+
+      <!-- Phone Field -->
+      <div class="card-hover bg-opacity-10 bg-[#d09c3f] p-6 rounded-lg">
+        <label for="phone" class="block mb-1 font-semibold text-[#d09c3f]">
+          📱 Số điện thoại <span class="text-red-500">*</span>
+        </label>
+        <input type="tel" name="phone" id="phone"
+          class="w-full border border-[#d09c3f] bg-[#002f4b] rounded-md p-3 focus:ring-2 focus:ring-[#d09c3f] transition-all duration-300 text-[#d09c3f] placeholder-[#d09c3f]/50"
+          placeholder="Nhập số điện thoại của bạn" required />
+      </div>
+
+      <!-- Email Field -->
+      <div class="card-hover bg-opacity-10 bg-[#d09c3f] p-6 rounded-lg">
+        <label for="email" class="block mb-1 font-semibold text-[#d09c3f]">
+          ✉️ Email
+        </label>
+        <input type="email" name="email" id="email"
+          class="w-full border border-[#d09c3f] bg-[#002f4b] rounded-md p-3 focus:ring-2 focus:ring-[#d09c3f] transition-all duration-300 text-[#d09c3f] placeholder-[#d09c3f]/50"
+          placeholder="Nhập email của bạn (không bắt buộc)" />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center pt-4">
+        <button type="submit" class="button-primary group inline-flex items-center space-x-2">
+          <span class="group-hover:mr-2 transition-all duration-300">Gửi đăng ký ngay</span>
+          <span class="hidden group-hover:inline-block transition-all duration-300">👉</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="hidden text-center mt-6 p-4 bg-[#d09c3f]/10 text-[#d09c3f] rounded-lg">
+      🎉 Cảm ơn bạn đã đăng ký! Chúng tôi sẽ liên hệ sớm nhất có thể.
+    </div>
+  </section>
+
+  <footer class="bg-[#002f4b] text-[#d09c3f] py-12 mt-10" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Company Info -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold mb-4">V-Italy</h3>
+          <p class="text-[#d09c3f]/80">
+            Kiến tạo không gian sống đẳng cấp với nội thất nhập khẩu cao cấp từ Châu Âu
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-[#d09c3f] hover:text-[#f0c674] transition-colors duration-300">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="#" class="text-[#d09c3f] hover:text-[#f0c674] transition-colors duration-300">
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0-.795-.646-1.44-1.44-1.44-.795 0-1.44.646-1.44 1.44 0 .794.646 1.439 1.44 1.439.793-.001 1.44-.645 1.44-1.439z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold mb-4">Liên kết nhanh</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#home" class="hover:text-[#f0c674] transition-colors duration-300">Trang chủ</a>
+            </li>
+            <li>
+              <a href="#why" class="hover:text-[#f0c674] transition-colors duration-300">Lý do hợp tác</a>
+            </li>
+            <li>
+              <a href="#who" class="hover:text-[#f0c674] transition-colors duration-300">Dành cho ai</a>
+            </li>
+            <li>
+              <a href="#how" class="hover:text-[#f0c674] transition-colors duration-300">Hình thức hợp tác</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+          <div class="space-y-2">
+            <p class="flex items-center space-x-3">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>123 Đường ABC, Quận XYZ, TP.HCM</span>
+            </p>
+            <p class="flex items-center space-x-3">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>info@v-italy.com</span>
+            </p>
+            <p class="flex items-center space-x-3">
+
+              <!-- Copyright -->
+            <div class="border-t border-[#d09c3f]/20 mt-8 pt-8 text-center">
+              <p class="text-[#d09c3f]/70"></p>
+              © 2025 V-Italy. Tất cả các quyền được bảo lưu.
+              </p>
+            </div>
+          </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: false,
+        offset: 100,
+        anchorPlacement: 'top-bottom',
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Sticky Navbar
+      const navbar = document.querySelector('.navbar');
+      const sticky = navbar.offsetTop;
+
+      window.onscroll = function () {
+        if (window.pageYOffset > sticky) {
+          navbar.classList.add('sticky');
+        } else {
+          navbar.classList.remove('sticky');
+        }
+      };
+
+      // Use IntersectionObserver to hide elements when they exit the viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const element = entry.target;
+          if (!entry.isIntersecting) {
+            // Remove aos-animate class to hide element when it exits viewport
+            element.classList.remove('aos-animate');
+          } else {
+            // Trigger AOS animation when element enters viewport
+            element.classList.add('aos-animate');
+          }
+        });
+      }, {
+        root: null, // Use viewport as root
+        threshold: 0.1, // Trigger when 10% of element is visible
+        rootMargin: '0px' // No margin
+      });
+
+      // Observe all elements with data-aos except the navbar
+      document.querySelectorAll('[data-aos]').forEach(element => {
+        if (!element.closest('.navbar')) {
+          observer.observe(element);
+        }
+      });
+
+      // Form handling
+      document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+
+        // Show loading state
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<div class="loader mx-auto"></div>';
+
+        try {
+          // Simulate form submission (replace with your actual API call)
+          await new Promise(resolve => setTimeout(resolve, 1500));
+
+          // Show success message
+          form.classList.add('hidden');
+          document.getElementById('successMessage').classList.remove('hidden');
+
+          // Reset form after 5 seconds
+          setTimeout(() => {
+            form.reset();
+            form.classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+          }, 5000);
+
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalText;
+        }
+      });
+
+      const menuButton = document.getElementById('menuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuIcon = document.getElementById('menuIcon');
+      let isMenuOpen = false;
+
+      function toggleMenu(show) {
+        isMenuOpen = show;
+        mobileMenu.classList.toggle('show', show);
+
+        if (show) {
+          menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+          document.body.style.overflow = 'hidden';
+        } else {
+          menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+          document.body.style.overflow = '';
+        }
+      }
+
+      // Handle mobile menu item clicks
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = link.getAttribute('href');
+          const target = document.querySelector(href);
+
+          // Close menu
+          toggleMenu(false);
+
+          // Scroll to section after menu closes
+          setTimeout(() => {
+            if (target) {
+              const targetPosition = target.offsetTop - 80; // Adjust for navbar height
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }, 500); // Wait for menu close animation
+        });
+      });
+
+      // Toggle menu on button click
+      menuButton.addEventListener('click', () => toggleMenu(!isMenuOpen));
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (isMenuOpen && !mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
+          toggleMenu(false);
+        }
+      });
+
+      // Close menu on resize to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && isMenuOpen) {
+          toggleMenu(false);
+        }
+      });
+
+      // Handle nav tab selection
+      const navLinks = document.querySelectorAll('.nav-item input');
+      const sections = document.querySelectorAll('section');
+
+      // Update active tab based on scroll position
+      window.addEventListener('scroll', () => {
+        let current = '';
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (window.pageYOffset >= sectionTop - 150) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(input => {
+          input.checked = input.nextElementSibling.getAttribute('href') === `#${current}`;
+        });
+      });
+
+      const navBtns = document.querySelectorAll('.nav-btn');
+      const sectionsNav = document.querySelectorAll('section');
+
+      function setActiveNav() {
+        let current = '';
+
+        sectionsNav.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.getAttribute('href') === `#${current}`) {
+            btn.classList.add('active');
+          }
+        });
+      }
+
+      // Set active on scroll
+      window.addEventListener('scroll', setActiveNav);
+
+      // Set active on page load
+      setActiveNav();
+
+      // Set active on click
+      navBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          navBtns.forEach(btn => btn.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+        });
+      });
+    });
+  </script>
+  <script src="./main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,503 @@
+ /* Global Styles */
+    body {
+      scroll-behavior: smooth;
+      background-color: #001f33;
+      /* Slightly darker than before */
+      color: #d09c3f;
+      padding-top: 80px;
+      font-family: roboto;
+    }
+
+    :root {
+      --primary-color: #d09c3f;
+      --secondary-color: #002f4b;
+      --text-color: #d09c3f;
+      --light-bg: white;
+      --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--primary-color);
+      border-radius: 3px;
+    }
+
+    /* Update navbar styles */
+    .navbar {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background-color: #002f4b;
+      padding: 1rem 0;
+      height: 100px;
+    }
+
+    .nav-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-btn {
+      color: #d09c3f;
+      font-size: 1.2rem;
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #d09c3f;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-btn:hover::after,
+    .nav-btn.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-btn.active {
+      color: #d09c3f;
+      font-weight: 500;
+    }
+
+    /* Navbar Styles */
+    .navbar .logo {
+      color: white;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .navbar .logo img {
+      height: 80px;
+      /* Increased logo size */
+      width: auto;
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .nav-link {
+      color: white;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      opacity: 0.9;
+    }
+
+    .navbar .nav-link:hover {
+      color: #d09c3f;
+      opacity: 1;
+    }
+
+    .navbar.sticky {
+      height: 80px;
+      /* Slightly smaller when sticky but still bigger than before */
+      padding: 0.5rem 0;
+      background-color: rgba(0, 47, 75, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar.sticky .logo img {
+      height: 60px;
+      /* Adjusted sticky logo size */
+    }
+
+    /* Update mobile responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        height: 120px;
+        padding: 0;
+      }
+
+      .navbar .logo img {
+        height: 100px;
+        text-align: center;
+      }
+
+      .navbar.sticky {
+        height: 90px;
+      }
+
+      .navbar.sticky .logo img {
+        height: 80px;
+      }
+
+      .nav-container {
+        padding: 0 1rem;
+      }
+
+      #menuButton {
+        width: 40px;
+        height: 40px;
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+        border: 1px solid rgba(208, 156, 63, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      #menuButton:hover {
+        background-color: rgba(208, 156, 63, 0.1);
+      }
+
+      .nav-menu {
+        display: none !important;
+        /* Force hide desktop menu on mobile */
+      }
+    }
+
+    /* AOS Animation Styles */
+    [data-aos] {
+      opacity: 0;
+      transition-property: transform, opacity;
+      transition-duration: 1s;
+    }
+
+    [data-aos].aos-animate {
+      opacity: 1;
+    }
+
+    /* Enhanced Animations */
+    .hover-lift {
+      transition: transform 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Friendly Button Styles */
+    .button-primary {
+      background-color: #d09c3f;
+      color: #002f4b;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button-primary:hover {
+      background-color: #f0c674;
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Card Hover Effects */
+    .card-hover {
+      background-color: #00243a !important;
+      /* Darker than section background */
+      border: 1px solid rgba(208, 156, 63, 0.2);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      background-color: #002f4b !important;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(208, 156, 63, 0.2);
+      border-color: #d09c3f;
+    }
+
+    /* Smooth Scroll Behavior */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    /* Loading Animation */
+    .loader {
+      border: 3px solid #002f4b;
+      border-top: 3px solid #d09c3f;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Update section backgrounds */
+    section {
+      background-color: #002f4b !important;
+      /* Original color */
+      border: 1px solid rgba(208, 156, 63, 0.1);
+      /* Subtle border */
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    /* Add subtle gradients to create depth */
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(208, 156, 63, 0.05), transparent);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* Update these sections to use the dark background */
+    #home,
+    #why,
+    #who,
+    #how,
+    #registration {
+      background-color: #002f4b !important;
+    }
+
+    /* Update text colors for better contrast on white background */
+    section h1,
+    section h2,
+    section h3,
+    section p {
+      color: #d09c3f !important;
+    }
+
+    /* Update hero section */
+    #home {
+      background-color: #002f4b !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at top right, rgba(208, 156, 63, 0.1), transparent);
+    }
+
+    /* Update registration section */
+    #registration {
+      background-color: #00243a !important;
+      border: 1px solid rgba(208, 156, 63, 0.2);
+    }
+
+    /* Keep the footer dark */
+    footer {
+      background-color: #022b43 !important;
+    }
+
+    footer h3,
+    footer p,
+    footer a {
+      color: #d09c3f !important;
+    }
+
+    /* Add to your existing styles */
+    .hero-image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      position: relative;
+    }
+
+    .hero-image-grid img {
+      transition: all 0.5s ease;
+    }
+
+    .hero-image-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(208, 156, 63, 0.2);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Gradient Overlay */
+    .gradient-overlay {
+      background: linear-gradient(45deg, rgba(0, 47, 75, 0.9), rgba(0, 47, 75, 0.7));
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    /* Update mobile menu styles */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 47, 75, 0.98);
+      padding: 6rem 2rem 2rem;
+      transform: translateY(-100%);
+      transition: transform 0.5s ease;
+      z-index: 30;
+    }
+
+    .mobile-menu.show {
+      position: sticky;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(0);
+      background-color: rgba(0, 47, 75, 0.98) !important;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      padding: 0;
+    }
+
+    .mobile-menu a {
+      color: #d09c3f;
+      font-size: 1rem;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu a:hover {
+      color: #f0c674;
+      transform: scale(1.05);
+      background: rgba(208, 156, 63, 0.1);
+    }
+
+
+    /* Close button styles */
+    .menu-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      transform: scale(0);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu.show .menu-close {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* Add these styles to your existing CSS */
+    .nav-tabs {
+      position: relative;
+      display: flex;
+      border-radius: 0.5rem;
+      background-color: #002f4b;
+      box-sizing: border-box;
+      font-size: 14px;
+      padding: 1rem 1rem 0 1rem;
+      margin-top: 1rem;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item input {
+      display: none;
+    }
+
+    .nav-item .nav-link {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      border: none;
+      padding: 0.5rem 0.8rem;
+      color: white;
+      transition: all 0.15s ease-in-out;
+      position: relative;
+    }
+
+    .nav-item input:checked+.nav-link {
+      background-color: #d09c3f;
+      font-weight: 600;
+      color: #002f4b;
+    }
+
+    .nav-item .nav-link:hover {
+      color: #d09c3f;
+    }
+
+    .nav-item input:checked+.nav-link:hover {
+      color: #002f4b;
+    }
+
+    .nav-item input:checked+.nav-link::after,
+    .nav-item input:checked+.nav-link::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #002f4b;
+      bottom: 0;
+    }
+
+    .nav-item input:checked+.nav-link::after {
+      right: -10px;
+      border-bottom-left-radius: 300px;
+      box-shadow: -3px 3px 0px 3px #d09c3f;
+    }
+
+    .nav-item input:checked+.nav-link::before {
+      left: -10px;
+      border-bottom-right-radius: 300px;
+      box-shadow: 3px 3px 0px 3px #d09c3f;
+    }
+  
