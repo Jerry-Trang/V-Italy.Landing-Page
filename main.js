@@ -300,5 +300,61 @@ document.addEventListener('DOMContentLoaded', () => {
           e.currentTarget.classList.add('active');
         });
       });
+
+      // Initialize HeroSlider
+      HeroSlider.init();
     });
-  
+
+// Navbar background on scroll
+function handleNavbarScroll() {
+  const navbar = document.querySelector('.navbar');
+  const scrollPosition = window.scrollY;
+  const heroHeight = document.querySelector('#home').offsetHeight;
+
+  if (scrollPosition > 0) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', handleNavbarScroll);
+// Initial check
+handleNavbarScroll();
+
+const HeroSlider = {
+  init() {
+    this.slides = document.querySelectorAll('.slide');
+    this.dots = document.querySelectorAll('.slider-dot');
+    this.currentSlide = 0;
+    this.slideInterval = 5000; // Change slide every 5 seconds
+
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        this.setSlide(index);
+      });
+    });
+
+    if (this.slides.length > 0) {
+      this.startSlideShow();
+    }
+  },
+
+  setSlide(index) {
+    this.slides[this.currentSlide].classList.remove('active');
+    this.dots[this.currentSlide].classList.remove('active');
+    
+    this.currentSlide = index;
+    
+    this.slides[this.currentSlide].classList.add('active');
+    this.dots[this.currentSlide].classList.add('active');
+  },
+
+  startSlideShow() {
+    setInterval(() => {
+      const nextSlide = (this.currentSlide + 1) % this.slides.length;
+      this.setSlide(nextSlide);
+    }, this.slideInterval);
+  }
+};
