@@ -327,8 +327,9 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: #00243a48;
+      background: #00243a57;
       z-index: 10;
+      background-blend-mode: color;
     }
 
     /* Update registration section */
