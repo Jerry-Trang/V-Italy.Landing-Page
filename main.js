@@ -358,3 +358,4 @@ const HeroSlider = {
     }, this.slideInterval);
   }
 };
+
