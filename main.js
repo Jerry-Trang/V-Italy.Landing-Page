@@ -187,64 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      const menuButton = document.getElementById('menuButton');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const menuIcon = document.getElementById('menuIcon');
-      let isMenuOpen = false;
-
-      function toggleMenu(show) {
-        isMenuOpen = show;
-        mobileMenu.classList.toggle('show', show);
-
-        if (show) {
-          menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-          document.body.style.overflow = 'hidden';
-        } else {
-          menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-          document.body.style.overflow = '';
-        }
-      }
-
-      // Handle mobile menu item clicks
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const href = link.getAttribute('href');
-          const target = document.querySelector(href);
-
-          // Close menu
-          toggleMenu(false);
-
-          // Scroll to section after menu closes
-          setTimeout(() => {
-            if (target) {
-              const targetPosition = target.offsetTop - 80; // Adjust for navbar height
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          }, 500); // Wait for menu close animation
-        });
-      });
-
-      // Toggle menu on button click
-      menuButton.addEventListener('click', () => toggleMenu(!isMenuOpen));
-
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (isMenuOpen && !mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
-          toggleMenu(false);
-        }
-      });
-
-      // Close menu on resize to desktop
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768 && isMenuOpen) {
-          toggleMenu(false);
-        }
-      });
-
       // Handle nav tab selection
       const navLinks = document.querySelectorAll('.nav-item input');
       const sections = document.querySelectorAll('section');
@@ -358,4 +300,73 @@ const HeroSlider = {
     }, this.slideInterval);
   }
 };
+
+// Thay thế phần xử lý mobile menu cũ bằng đoạn code sau:
+document.addEventListener('DOMContentLoaded', () => {
+  const menuButton = document.getElementById('menuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  let isMenuOpen = false;
+
+  // Hàm toggle menu
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    
+    // Toggle class show cho mobile menu
+    mobileMenu.classList.toggle('show', isMenuOpen);
+    
+    // Thay đổi icon menu
+    if (isMenuOpen) {
+      menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // X icon
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    } else {
+      menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); // Hamburger icon
+      document.body.style.overflow = ''; // Allow scrolling
+    }
+  }
+
+  // Click handler cho menu button
+  menuButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  // Click handler cho mobile menu items
+  const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      const targetSection = document.querySelector(href);
+      
+      // Đóng menu
+      toggleMenu();
+      
+      // Scroll đến section sau khi menu đóng
+      if (targetSection) {
+        setTimeout(() => {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+        }, 300);
+      }
+    });
+  });
+
+  // Đóng menu khi click outside
+  document.addEventListener('click', (e) => {
+    if (isMenuOpen && !mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
+      toggleMenu();
+    }
+  });
+
+  // Đóng menu khi resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && isMenuOpen) {
+      toggleMenu();
+    }
+  });
+});
 
